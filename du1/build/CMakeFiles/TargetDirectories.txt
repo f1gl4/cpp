@@ -1,0 +1,4 @@
+/home/nikodema/Documents/cpp/du1/build/CMakeFiles/tasks.dir
+/home/nikodema/Documents/cpp/du1/build/CMakeFiles/tests.dir
+/home/nikodema/Documents/cpp/du1/build/CMakeFiles/edit_cache.dir
+/home/nikodema/Documents/cpp/du1/build/CMakeFiles/rebuild_cache.dir
