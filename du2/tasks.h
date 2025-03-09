@@ -23,6 +23,7 @@ public:
     UTF8String operator+(const UTF8String& other) const; // concatenate (new object return)
     UTF8String& operator+=(const UTF8String& other); // append (change cur object)
     bool operator==(const UTF8String &other) const; // equal
+    bool operator!=(const UTF8String &other) const; // no equal
     operator std::string() const; // converted to std::string by explicit cast
 
     void append(char ch); // add new ascii chars

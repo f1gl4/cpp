@@ -98,6 +98,11 @@ bool UTF8String::operator==(const UTF8String &other) const
     return std::equal(this->data_, this->data_ + this->size_, other.data_, other.data_ + other.size_);
 }
 
+bool UTF8String::operator!=(const UTF8String &other) const
+{
+    return !(std::equal(this->data_, this->data_ + this->size_, other.data_, other.data_ + other.size_));
+}
+
 UTF8String::operator std::string() const
 {
     return std::string(reinterpret_cast<const char*>(this->data_), this->size_);
