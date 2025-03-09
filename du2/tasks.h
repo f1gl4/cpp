@@ -15,7 +15,6 @@ class UTF8String {
 public:
     UTF8String(); // constructor
     UTF8String(const std::string& str); // constructor string
-    UTF8String(const char* str);
     UTF8String(const std::vector<CodePoint>& codepoints); // constructor codepoints vector
     UTF8String(const UTF8String& other); // copy constructor
     UTF8String& operator=(const UTF8String& other); // copy assignm
@@ -42,4 +41,6 @@ private:
     uint8_t* data_;
     std::size_t size_;
     std::size_t capacity_;
+
+    void addCapacity(std::size_t minCapacity);
 };
