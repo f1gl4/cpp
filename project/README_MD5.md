@@ -13,7 +13,8 @@ Initialize constant values necessary for hashing:
 
 1. Array **T** of 64 32-bit values:
 
-**photo**
+![image](https://github.com/user-attachments/assets/ca5bbfc2-2c2b-4cad-a2c5-6325ecc1ac0a)
+
 
 2. Variables: `a = 0x67452301`, `b = 0xefcdab89`, `c = 0x98badcfe`, `d = 0x10325476`; which will change and store the final hash value
 
@@ -36,7 +37,8 @@ A left shift operation by a predetermined standardized value is applied to the r
 
 Each round has the following format:
 
-**photo**
+![image](https://github.com/user-attachments/assets/2f6a0952-eedf-41a4-b547-365f44df1962)
+
 
 
 ```
