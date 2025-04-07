@@ -1,3 +1,9 @@
+# HMAC
+
+RFC HMAC:
+https://datatracker.ietf.org/doc/html/rfc2104
+
+
 # MD5 Algorithm
 
 From the input string, we always create a string whose length is a multiple of 64 bytes.  
