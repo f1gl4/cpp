@@ -4,6 +4,9 @@
 #include <cstddef>
 #include <vector>
 #include <string>
+#include <cstring>
+#include <algorithm> 
+
 
 /**
  * \brief Structure, stores state of MD5
@@ -25,7 +28,7 @@ struct MD5Context {
 // Initialization
 void MD5_Init(MD5Context &ctx);
 
-// Add another piece of data to the context
+// Add another piece of data to the context, call process_block if the buffer is full
 void MD5_Update(MD5Context &ctx, const uint8_t* data, size_t len);
 
 // Complete the hash calculation and return a 16-byte result

@@ -2,22 +2,20 @@
 
 #include "md5.h"
 
-#include <cstring>
-#include <algorithm> 
-#include <string>
-
 
 // Define LITTLE_ENDIAN / BIG_ENDIAN
 #define LITTLE_ENDIAN 0
 #define BIG_ENDIAN    1
 
-static bool getEndianness() {
+static bool getEndianness() 
+{
     uint32_t x = 1;
     return (*reinterpret_cast<uint8_t*>(&x) == 1) ? LITTLE_ENDIAN : BIG_ENDIAN;
 }
 
 // Table T
-static const uint32_t T[65] = {
+static const uint32_t T[65] = 
+{
     0,
     0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
     0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be, 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
@@ -33,16 +31,17 @@ static const uint32_t T[65] = {
 };
 
 // Rounds
-static inline uint32_t rotate_left(uint32_t x, uint32_t s) {
+static inline uint32_t rotate_left(uint32_t x, uint32_t s) 
+{
     return (x << s) | (x >> (32 - s));
 }
 
-static inline uint32_t F(uint32_t x, uint32_t y, uint32_t z) { return (x & y) | (~x & z); }
-static inline uint32_t G(uint32_t x, uint32_t y, uint32_t z) { return (x & z) | (~z & y); }
-static inline uint32_t H(uint32_t x, uint32_t y, uint32_t z) { return x ^ y ^ z; }
-static inline uint32_t I(uint32_t x, uint32_t y, uint32_t z) { return y ^ (~z | x); }
+static uint32_t F(uint32_t x, uint32_t y, uint32_t z) { return (x & y) | (~x & z); }
+static uint32_t G(uint32_t x, uint32_t y, uint32_t z) { return (x & z) | (~z & y); }
+static uint32_t H(uint32_t x, uint32_t y, uint32_t z) { return x ^ y ^ z; }
+static uint32_t I(uint32_t x, uint32_t y, uint32_t z) { return y ^ (~z | x); }
 
-static inline void round_func(uint32_t &w, uint32_t x, uint32_t y, uint32_t z,
+static void round_func(uint32_t &w, uint32_t x, uint32_t y, uint32_t z,
                               uint32_t M, uint32_t s, uint32_t i,
                               uint32_t(*func)(uint32_t, uint32_t, uint32_t))
 {
@@ -52,7 +51,8 @@ static inline void round_func(uint32_t &w, uint32_t x, uint32_t y, uint32_t z,
 }
 
 
-void MD5_Init(MD5Context &ctx) {
+void MD5_Init(MD5Context &ctx) 
+{
 
     ctx.a = 0x67452301;
     ctx.b = 0xEFCDAB89;
@@ -64,8 +64,9 @@ void MD5_Init(MD5Context &ctx) {
 }
 
 
-static void process_block(MD5Context &ctx, const uint8_t block[64]) {
-
+static void process_block(MD5Context &ctx, const uint8_t block[64]) 
+{
+    // read 64 bytes as 16 words of 4 bytes each
     uint32_t M[16];
     for (int i = 0; i < 16; i++) {
         M[i] = (uint32_t)block[i*4] |
@@ -171,7 +172,8 @@ static void process_block(MD5Context &ctx, const uint8_t block[64]) {
 }
 
 
-void MD5_Update(MD5Context &ctx, const uint8_t* data, size_t len) {
+void MD5_Update(MD5Context &ctx, const uint8_t* data, size_t len) 
+{
 
     ctx.bitCount += (uint64_t)len * 8;
 
@@ -188,6 +190,7 @@ void MD5_Update(MD5Context &ctx, const uint8_t* data, size_t len) {
         i += copyBytes;
         offset += copyBytes;
 
+        // if buffer is full
         if (offset == 64) {
             process_block(ctx, ctx.buffer);
             offset = 0;
@@ -196,7 +199,8 @@ void MD5_Update(MD5Context &ctx, const uint8_t* data, size_t len) {
 }
 
 
-void MD5_Final(MD5Context &ctx, uint8_t output[16]) {
+void MD5_Final(MD5Context &ctx, uint8_t output[16]) 
+{
 
     size_t offset = (ctx.bitCount / 8) % 64;
 
@@ -230,7 +234,8 @@ void MD5_Final(MD5Context &ctx, uint8_t output[16]) {
 }
 
 
-std::vector<uint8_t> MD5(const uint8_t* data, size_t size) {
+std::vector<uint8_t> MD5(const uint8_t* data, size_t size) 
+{
     MD5Context ctx;
     MD5_Init(ctx);
     MD5_Update(ctx, data, size);
@@ -241,7 +246,8 @@ std::vector<uint8_t> MD5(const uint8_t* data, size_t size) {
 }
 
 
-std::string md5hash_to_string(const uint8_t hash[16]) {
+std::string md5hash_to_string(const uint8_t hash[16]) 
+{
     static const char* hex = "0123456789abcdef";
     std::string ret;
     ret.reserve(32);
