@@ -1,4 +1,24 @@
-# HMAC
+# Cryptographic Library
+
+This cryptographic library includes:
+- MD5 hash function
+- AES encryption algorithm
+- Key generator
+- HMAC data authentication
+
+## Compilation
+
+To compile the project, run the following command in terminal:
+
+```bash
+g++ main.cpp md5.cpp keygen.cpp hmac.cpp -o cryptolib
+```
+
+# HMAC (Keyed-Hashing for Message Authentication)
+
+Mechanism for message authentication using cryptographic hash functions. HMAC can be used with any 
+iterative cryptographic hash function, e.g., MD5, SHA-1, in combination with a secret shared key.  
+The cryptographic strength of HMAC depends on the properties of the underlying hash function.
 
 RFC HMAC:
 https://datatracker.ietf.org/doc/html/rfc2104
